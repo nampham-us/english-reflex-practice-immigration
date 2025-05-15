@@ -151,7 +151,7 @@ export default function App() {
           </div>
         )}
 
-        <div className="flex flex-col sm:flex-row gap-2 mt-4">
+        <div className="flex flex-col sm:flex-row gap-2 mt-20">
           <Button
             className="flex-1 py-3 text-base rounded-full bg-blue-600 text-white hover:bg-blue-700"
             onClick={() => setShowAnswer(!showAnswer)}
