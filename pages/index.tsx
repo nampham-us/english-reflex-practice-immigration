@@ -123,24 +123,25 @@ export default function App() {
 
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-4 mb-4">
         <div className="text-lg sm:text-xl font-semibold text-gray-800 mb-2 flex flex-col items-center">
-          <span>{item.question}</span>
+          
           <Button
             className="mt-2 px-3 py-1 rounded-full bg-blue-100 text-blue-700 hover:bg-blue-200"
             onClick={() => speak(item.question)}
           >
-            🔊 Đọc câu hỏi
+            🔊 
           </Button>
+          <span> {item.question}</span>
         </div>
 
         {showAnswer && (
-          <div className="transition-all duration-200 text-green-700 text-lg font-bold bg-green-50 rounded-xl p-3 my-2 shadow-inner flex flex-col items-center">
-            ✅ {item.answer}
+          <div className="transition-all duration-200 text-green-700 text-lg font-bold bg-green-50 rounded-xl p-3 my-2 shadow-inner flex flex-col items-center">   
             <Button
               className="mt-2 px-3 py-1 rounded-full bg-green-100 text-green-700 hover:bg-green-200"
               onClick={() => speak(item.answer)}
             >
-              🔊 Đọc đáp án
+              🔊 
             </Button>
+            ✅ {item.answer}
           </div>
         )}
 
