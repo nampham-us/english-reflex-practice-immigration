@@ -117,11 +117,11 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 space-y-4 text-center">
       <h1 className="text-2xl font-bold">🇺🇸 US Citizenship Reflex Trainer</h1>
-      <div className="text-xl font-medium">{item.question}</div>
+      <div className="text-xl font-medium">{item.question} <Button onClick={() => speak(item.question)}>  🔊 Read</Button></div>
 
       {showAnswer && <div className="text-green-700">
         ✅ {item.answer}
-        <Button onClick={() => speak(item.answer)}>🔊 Read</Button>
+        <Button onClick={() => speak(item.answer)}>  🔊 Read</Button>
         </div>}
       {showVietnamese && <div className="text-gray-500 italic">🇻🇳 {item.vietnamese}</div>}
 
@@ -132,7 +132,7 @@ export default function App() {
         <Button onClick={() => setShowVietnamese(!showVietnamese)}>
           {showVietnamese ? "Ẩn tiếng Việt" : "Hiện tiếng Việt"}
         </Button>
-        <Button onClick={() => speak(item.question)}>🔊 Read</Button>
+        
         <Button onClick={nextRandom}>🔁 Random</Button>
       </div>
     </div>
