@@ -118,7 +118,7 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 p-4 text-center">
       <h1 className="text-3xl font-extrabold mb-2 text-blue-800 drop-shadow-md">
-        🇺🇸 US Citizenship Reflex Trainer
+        US Citizenship Reflex Trainer
       </h1>
 
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-4 mb-4">
