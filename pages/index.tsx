@@ -119,7 +119,10 @@ export default function App() {
       <h1 className="text-2xl font-bold">🇺🇸 US Citizenship Reflex Trainer</h1>
       <div className="text-xl font-medium">{item.question}</div>
 
-      {showAnswer && <div className="text-green-700">✅ {item.answer}</div>}
+      {showAnswer && <div className="text-green-700">
+        ✅ {item.answer}
+        <Button onClick={() => speak(item.answer)}>🔊 Read</Button>
+        </div>}
       {showVietnamese && <div className="text-gray-500 italic">🇻🇳 {item.vietnamese}</div>}
 
       <div className="flex gap-2 flex-wrap justify-center">
