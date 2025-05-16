@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { Button } from "../components/ui/button";
+// import "../styles/globals.css"; // Import global CSS
+ 
+// Import file CSS
 
 type QAItem = {
   question: string;
@@ -116,27 +119,26 @@ export default function App() {
   const item: QAItem = data[index];
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 p-4 text-center">
-      <h1 className="text-3xl font-extrabold mb-2 text-blue-800 drop-shadow-md">
+    <div className="container">
+      <h1 className="title">
         US Citizenship Reflex Trainer
       </h1>
-
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-4 mb-4">
-        <div className="text-lg sm:text-xl font-semibold text-gray-800 mb-2 flex flex-col items-center">
-          
+  
+      <div className="card">
+        <div className="question-container">
           <Button
-            className="mt-2 px-3 py-1 rounded-full bg-blue-100 text-blue-700 hover:bg-blue-200"
+            className="speak-button"
             onClick={() => speak(item.question)}
           >
             🔊 
           </Button>
-          <span> {item.question}</span>
+          <span>{item.question}</span>
         </div>
-
+  
         {showAnswer && (
-          <div className="transition-all duration-200 text-green-700 text-lg font-bold bg-green-50 rounded-xl p-3 my-2 shadow-inner flex flex-col items-center">   
+          <div className="answer-container">   
             <Button
-              className="mt-2 px-3 py-1 rounded-full bg-green-100 text-green-700 hover:bg-green-200"
+              className="speak-answer-button"
               onClick={() => speak(item.answer)}
             >
               🔊 
@@ -144,28 +146,28 @@ export default function App() {
             ✅ {item.answer}
           </div>
         )}
-
+  
         {showVietnamese && (
-          <div className="transition-all duration-200 text-gray-600 italic bg-gray-100 rounded-xl p-3 my-2 shadow-inner">
+          <div className="vietnamese-container">
             🇻🇳 {item.vietnamese}
           </div>
         )}
-
-        <div className="flex flex-col sm:flex-row gap-2 mt-20">
+  
+        <div className="buttons-container">
           <Button
-            className="flex-1 py-3 text-base rounded-full bg-blue-600 text-white hover:bg-blue-700"
+            className="action-button btn-blue"
             onClick={() => setShowAnswer(!showAnswer)}
           >
             {showAnswer ? "Ẩn đáp án" : "Hiện đáp án"}
           </Button>
           <Button
-            className="flex-1 py-3 text-base rounded-full bg-orange-500 text-white hover:bg-orange-600"
+            className="action-button btn-orange"
             onClick={() => setShowVietnamese(!showVietnamese)}
           >
             {showVietnamese ? "Ẩn tiếng Việt" : "Hiện tiếng Việt"}
           </Button>
           <Button
-            className="flex-1 py-3 text-base rounded-full bg-purple-500 text-white hover:bg-purple-600"
+            className="action-button btn-purple"
             onClick={nextRandom}
           >
             🔁 Ngẫu nhiên
