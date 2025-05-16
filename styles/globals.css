@@ -248,3 +248,29 @@
   }
   
   /* Ensure buttons are styled via variants or additional classes */
+  .btn-active {
+  background-color: #4CAF50; /* Màu nền nút hoạt động */
+  color: white;
+}
+
+.btn-inactive {
+  background-color: #e7e7e7; /* Màu nền nút không hoạt động */
+  color: black;
+}
+
+.action-button {
+  margin-right: 10px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-purple {
+  background-color: #800080;
+  color: white;
+}
+
+.btn-blue {
+  background-color: #0000FF;
+  color: white;
+}
