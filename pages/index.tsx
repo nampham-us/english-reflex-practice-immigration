@@ -121,7 +121,7 @@ export default function App() {
   return (
     <div className="container">
       <h1 className="title">
-        US Citizenship Reflex Trainer
+        US Citizenship N-400 Trainer
       </h1>
   
       <div className="card">
