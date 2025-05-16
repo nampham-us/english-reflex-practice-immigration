@@ -46,6 +46,7 @@
   /* Speak Button */
   .speak-button {
     margin-top: 0.5rem; /* mt-2 */
+    margin-bottom: 0.5rem; /* mb-2 */
     padding: 0.25rem 0.75rem; /* px-3 py-1 */
     border-radius: 9999px; /* rounded-full */
     background-color: #d1ecf1; /* bg-blue-100 */

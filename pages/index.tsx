@@ -207,8 +207,8 @@ export default function App() {
               <div style={{ marginBottom: "10px" }}>
                 <strong>✅ </strong> {item.answer}
               </div>
-              <div>
-                <strong>✅ </strong> {item.vietnamese}
+              <div style={{fontSize: "16px", color: "#888", marginTop: "10px"}}>
+                {item.vietnamese}
               </div>
             </div>
           </>
