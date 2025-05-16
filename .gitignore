@@ -1,3 +1,5 @@
 /node_modules
 /.env
 /.next
+/pages/index copy.tsx
+/pages/index copy 2.tsx

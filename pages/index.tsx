@@ -204,13 +204,16 @@ export default function App() {
   const [index, setIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const [language, setLanguage] = useState<"en" | "vi">("en");
+  const [selectedData, setSelectedData] = useState<"civils" | "n400">("n400");
+
+  const currentData = selectedData === "civils" ? civils_data : n400_data;
 
   useEffect(() => {
-    speak(n400_data[index].question, "en-US");
-  }, [index]);
+    speak(currentData[index].question, "en-US");
+  }, [index, currentData]);
 
   const nextRandom = () => {
-    const next = Math.floor(Math.random() * n400_data.length);
+    const next = Math.floor(Math.random() * currentData.length);
     setIndex(next);
     setShowAnswer(false);
   };
@@ -225,7 +228,7 @@ export default function App() {
     }
   };
 
-  const item: QAItem = n400_data[index];
+  const item: QAItem = currentData[index];
 
   // Định nghĩa các nhãn giao diện dựa trên ngôn ngữ
   const labels = {
@@ -239,7 +242,10 @@ export default function App() {
       hideAnswer: "Hide Answer",
       selectLanguage: "Select Language",
       english: "English",
-      vietnamese: "Tiếng Việt"
+      vietnamese: "Tiếng Việt",
+      selectDataset: "Select Dataset",
+      civils: "Civils",
+      n400: "N-400"
     },
     vi: {
       title: "Học Ý Nghĩa Từ Vựng US Citizenship N-400",
@@ -251,22 +257,26 @@ export default function App() {
       hideAnswer: "Ẩn đáp án",
       selectLanguage: "Chọn Ngôn Ngữ",
       english: "English",
-      vietnamese: "Tiếng Việt"
+      vietnamese: "Tiếng Việt",
+      selectDataset: "Chọn Bộ Dữ Liệu",
+      civils: "Civils",
+      n400: "N-400"
     }
   };
 
   return (
-    <div className="container">
-      <h1 className="title">
+    <div className="container" style={{ padding: "20px", maxWidth: "600px", margin: "0 auto" }}>
+      <h1 className="title" style={{ textAlign: "center", marginBottom: "20px" }}>
         {labels[language].title}
       </h1>
 
       {/* Lựa chọn ngôn ngữ */}
-      <div className="language-selection" style={{ marginBottom: "20px" }}>
+      <div className="language-selection" style={{ marginBottom: "20px", display: "flex", alignItems: "center" }}>
         <span style={{ marginRight: "10px" }}>{labels[language].selectLanguage}:</span>
         <Button
           className={`action-button ${language === "en" ? "btn-active" : "btn-inactive"}`}
           onClick={() => setLanguage("en")}
+          style={{ marginRight: "10px" }}
         >
           {labels[language].english}
         </Button>
@@ -278,20 +288,39 @@ export default function App() {
         </Button>
       </div>
 
-      <div className="card">
-        <div className="question-container">
+      {/* Lựa chọn bộ dữ liệu */}
+      <div className="data-selection" style={{ marginBottom: "20px" }}>
+        <span style={{ marginRight: "10px" }}>{labels[language].selectDataset}:</span>
+        <select
+          value={selectedData}
+          onChange={(e) => {
+            const value = e.target.value as "civils" | "n400";
+            setSelectedData(value);
+            setIndex(0); // Reset index khi thay đổi bộ dữ liệu
+            setShowAnswer(false); // Ẩn đáp án khi thay đổi bộ dữ liệu
+          }}
+          style={{ padding: "8px", borderRadius: "4px" }}
+        >
+          <option value="civils">{labels[language].civils}</option>
+          <option value="n400">{labels[language].n400}</option>
+        </select>
+      </div>
+
+      <div className="card" style={{ border: "1px solid #ddd", borderRadius: "8px", padding: "20px", boxShadow: "2px 2px 12px rgba(0,0,0,0.1)" }}>
+        <div className="question-container" style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
           <Button
             className="speak-button"
             onClick={() => speak(item.question, "en-US")}
+            style={{ marginRight: "10px" }}
           >
             {labels[language].speak}
           </Button>
-          <span>{item.question}</span>
+          <span style={{ fontSize: "18px" }}>{item.question}</span>
         </div>
 
         {showAnswer && (
           <>
-            <div className="answer-container">
+            <div className="answer-container" style={{ marginBottom: "20px" }}>
               <div style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
                 <Button
                   className="speak-answer-button"
@@ -300,6 +329,7 @@ export default function App() {
                 >
                   {labels[language].speakAnswerEn}
                 </Button>
+                {/* Bạn có thể thêm nút phát âm tiếng Việt nếu muốn */}
                 {/* <Button
                   className="speak-answer-button"
                   onClick={() => speak(item.vietnamese, "vi-VN")}
@@ -310,14 +340,14 @@ export default function App() {
               <div style={{ marginBottom: "10px" }}>
                 <strong>✅ </strong> {item.answer}
               </div>
-              <div style={{fontSize: "16px", color: "#888", marginTop: "10px"}}>
+              <div style={{ fontSize: "16px", color: "#888", marginTop: "10px" }}>
                 {item.vietnamese}
               </div>
             </div>
           </>
         )}
 
-        <div className="buttons-container">
+        <div className="buttons-container" style={{ display: "flex", justifyContent: "space-between" }}>
           <Button
             className="action-button btn-purple"
             onClick={nextRandom}
