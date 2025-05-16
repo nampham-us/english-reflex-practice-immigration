@@ -129,8 +129,8 @@ export default function App() {
     en: {
       title: "US Citizenship N-400 Meaning Trainer",
       speak: "🔊 Speak",
-      speakAnswerEn: "🔊 Speak Answer (EN)",
-      speakAnswerVi: "🔊 Speak Answer (VI)",
+      speakAnswerEn: "🔊 Speak Answer",
+      // speakAnswerVi: "🔊 Speak Answer (VI)",
       nextRandom: "🔁 Random",
       showAnswer: "Show Answer",
       hideAnswer: "Hide Answer",
@@ -141,8 +141,8 @@ export default function App() {
     vi: {
       title: "Học Ý Nghĩa Từ Vựng US Citizenship N-400",
       speak: "🔊 Phát âm",
-      speakAnswerEn: "🔊 Phát âm Đáp Án (EN)",
-      speakAnswerVi: "🔊 Phát âm Đáp Án (VI)",
+      speakAnswerEn: "🔊 Phát âm Đáp Án",
+      // speakAnswerVi: "🔊 Phát âm Đáp Án (VI)",
       nextRandom: "🔁 Ngẫu nhiên",
       showAnswer: "Hiện đáp án",
       hideAnswer: "Ẩn đáp án",
