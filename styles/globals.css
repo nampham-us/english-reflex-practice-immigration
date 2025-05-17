@@ -103,7 +103,7 @@
   /* Buttons Container */
   .buttons-container {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 0.5rem; /* gap-2 */
     margin-top: 1.25rem; /* mt-5 */
   }
