@@ -233,31 +233,31 @@ export default function App() {
   // Định nghĩa các nhãn giao diện dựa trên ngôn ngữ
   const labels = {
     en: {
-      title: "US Citizenship N-400 Meaning Trainer",
+      civil_title: "100 Civils Question Trainer",
+      n400_title: "US Citizenship N-400 Meaning Trainer",
       speak: "🔊 Speak",
-      speakAnswerEn: "🔊 Speak Answer",
-      // speakAnswerVi: "🔊 Speak Answer (VI)",
+      speakAnswerEn: "🔊 Speak Answer",      
       nextRandom: "🔁 Random",
       showAnswer: "Show Answer",
       hideAnswer: "Hide Answer",
-      selectLanguage: "Select Language",
+      selectLanguage: "Language",
       english: "English",
-      vietnamese: "Tiếng Việt",
+      vietnamese: "Việt Nam",
       selectDataset: "Select Dataset",
       civils: "Civils",
       n400: "N-400"
     },
     vi: {
-      title: "Học Ý Nghĩa Từ Vựng US Citizenship N-400",
+      civil_title: "Học 100 câu hỏi Quốc tịch Mỹ",
+      n400_title: "Học Ý Nghĩa Từ Vựng US Citizenship N-400",
       speak: "🔊 Phát âm",
-      speakAnswerEn: "🔊 Phát âm Đáp Án",
-      // speakAnswerVi: "🔊 Phát âm Đáp Án (VI)",
+      speakAnswerEn: "🔊 Phát âm Đáp Án",      
       nextRandom: "🔁 Ngẫu nhiên",
       showAnswer: "Hiện đáp án",
       hideAnswer: "Ẩn đáp án",
-      selectLanguage: "Chọn Ngôn Ngữ",
+      selectLanguage: "Ngôn Ngữ",
       english: "English",
-      vietnamese: "Tiếng Việt",
+      vietnamese: "Việt Nam",
       selectDataset: "Chọn Bộ Dữ Liệu",
       civils: "Civils",
       n400: "N-400"
@@ -267,12 +267,13 @@ export default function App() {
   return (
     <div className="container" style={{ padding: "20px", maxWidth: "600px", margin: "0 auto" }}>
       <h1 className="title" style={{ textAlign: "center", marginBottom: "20px" }}>
-        {labels[language].title}
+        {selectedData === "civils" ? labels[language].civil_title : labels[language].n400_title}
+        {/* {labels[language].title} */}
       </h1>
 
       {/* Lựa chọn ngôn ngữ */}
       <div className="language-selection" style={{ marginBottom: "20px", display: "flex", alignItems: "center" }}>
-        <span style={{ marginRight: "10px" }}>{labels[language].selectLanguage}:</span>
+        <span style={{ marginRight: "10px", fontWeight:"600"}}>{labels[language].selectLanguage}:</span>
         <Button
           className={`action-button ${language === "en" ? "btn-active" : "btn-inactive"}`}
           onClick={() => setLanguage("en")}
@@ -290,7 +291,7 @@ export default function App() {
 
       {/* Lựa chọn bộ dữ liệu */}
       <div className="data-selection" style={{ marginBottom: "20px" }}>
-        <span style={{ marginRight: "10px" }}>{labels[language].selectDataset}:</span>
+        <span style={{ marginRight: "10px", fontWeight:"600" }}>{labels[language].selectDataset}:</span>
         <select
           value={selectedData}
           onChange={(e) => {
