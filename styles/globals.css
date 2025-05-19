@@ -40,7 +40,7 @@ body {
 .card {
   width: 100%;
   max-width: 28rem; /* max-w-md */
-  background-color: #ffffff; /* bg-white */
+  background-color: #fff5f7; /* bg-white */
   border-radius: 1.5rem; /* rounded-2xl */
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg */
   padding: 1rem; /* p-4 */
@@ -78,7 +78,7 @@ body {
 /* Container cho các nút */
 .buttons-container {
   display: flex;
-  flex-direction: column; /* Mặc định trên màn hình nhỏ */
+  /* flex-direction: column; Mặc định trên màn hình nhỏ */
   gap: 0.5rem; /* gap-2 */
   margin-top: 1.25rem; /* mt-5 */
 }
@@ -200,13 +200,14 @@ body {
 
 /* Responsive Adjustments for Action Buttons */
 .action-button {
-  width: 9rem; /* 144px */
+  width: 10rem; /* 144px */
   margin-right: 0;
+  
 }
 
 @media (min-width: 640px) { /* sm breakpoint */
   .action-button {
-    width: 9rem;
+    width: 10rem;
     margin-right: 10px;
   }
 }
@@ -253,6 +254,7 @@ body {
 
 /* Vietnamese Container */
 .vietnamese-container {
+  font-size: 1.2rem; /* text-lg */
   transition: all 0.2s ease;
   color: #4b5563; /* text-gray-600 */
   font-style: italic; /* italic */
