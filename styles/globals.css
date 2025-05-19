@@ -200,13 +200,13 @@ body {
 
 /* Responsive Adjustments for Action Buttons */
 .action-button {
-  width: 10rem;
+  width: 9rem; /* 144px */
   margin-right: 0;
 }
 
 @media (min-width: 640px) { /* sm breakpoint */
   .action-button {
-    width: 10rem;
+    width: 9rem;
     margin-right: 10px;
   }
 }
