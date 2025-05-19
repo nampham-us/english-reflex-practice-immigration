@@ -1,255 +1,148 @@
 /* globals.css */
 
-/* Container */
+/* -----------------------------
+   1. Global Styles
+------------------------------ */
+
+/* Box Sizing Toàn Cục */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Thẻ body để đảm bảo font và màu nền */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom right, #e0f7fa, #e3f2fd);
+  color: #1e3a8a; /* Màu chữ mặc định */
+}
+
+/* -----------------------------
+   2. Container Classes
+------------------------------ */
+
+/* Container chính */
 .container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(to bottom right, #e0f7fa, #e3f2fd);
-    padding: 1rem;
-    text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+/* Card */
+.card {
+  width: 100%;
+  max-width: 28rem; /* max-w-md */
+  background-color: #ffffff; /* bg-white */
+  border-radius: 1.5rem; /* rounded-2xl */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg */
+  padding: 1rem; /* p-4 */
+  margin-bottom: 1rem; /* mb-4 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Title */
+.title {
+  font-size: 1.875rem; /* 3xl */
+  font-weight: 800; /* Extra Bold */
+  margin-bottom: 0.5rem; /* mb-2 */
+  color: #1e3a8a; /* text-blue-800 */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* drop-shadow-md */
+}
+
+@media (max-width: 639px) { /* Mobile */
+  .title {
+    font-size: 1.5rem; /* Giảm kích thước trên màn hình nhỏ */
   }
-  
-  /* Title */
+}
+
+@media (min-width: 640px) { /* sm breakpoint */
   .title {
     font-size: 1.875rem; /* 3xl */
-    font-weight: 800; /* Extra Bold */
-    margin-bottom: 0.5rem; /* mb-2 */
-    color: #1e3a8a; /* text-blue-800 */
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* drop-shadow-md */
   }
-  
-  /* Card */
-  .card {
-    width: 100%;
-    max-width: 28rem; /* max-w-md */
-    background-color: #ffffff; /* bg-white */
-    border-radius: 1.5rem; /* rounded-2xl */
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg */
-    padding: 1rem; /* p-4 */
-    margin-bottom: 1rem; /* mb-4 */
-  }
-  
-  /* Question Container */
-  .question-container {
-    font-size: 1.5rem; /* text-lg */
-    font-weight: 600; /* font-semibold */
-    color: #4b5563; /* text-gray-800 */
-    margin-bottom: 0.5rem; /* mb-2 */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  /* Speak Button */
-  .speak-button {
-    margin-top: 0.5rem; /* mt-2 */
-    margin-bottom: 0.5rem; /* mb-2 */
-    padding: 0.25rem 0.75rem; /* px-3 py-1 */
-    border-radius: 9999px; /* rounded-full */
-    background-color: #d1ecf1; /* bg-blue-100 */
-    color: #1d4ed8; /* text-blue-700 */
-    transition: background-color 0.3s ease;
-  }
-  
-  .speak-button:hover {
-    background-color: #c7ecee; /* hover:bg-blue-200 */
-  }
-  
-  /* Answer Container */
-  .answer-container {
-    transition: all 0.2s ease;
-    color: #047857; /* text-green-700 */
-    font-size: 1.5rem; /* text-lg */
-    font-weight: 700; /* font-bold */
-    background-color: #d1fae5; /* bg-green-50 */
-    border-radius: 0.75rem; /* rounded-xl */
-    padding: 0.75rem; /* p-3 */
-    margin: 0.5rem 0; /* my-2 */
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* shadow-inner */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  /* Speak Answer Button */
-  .speak-answer-button {
-    margin-top: 0.5rem; /* mt-2 */
-    padding: 0.25rem 0.75rem; /* px-3 py-1 */
-    border-radius: 9999px; /* rounded-full */
-    background-color: #d1fae5; /* bg-green-100 */
-    color: #047857; /* text-green-700 */
-    transition: background-color 0.3s ease;
-  }
-  
-  .speak-answer-button:hover {
-    background-color: #a7f3d0; /* hover:bg-green-200 */
-  }
-  
-  /* Vietnamese Container */
-  .vietnamese-container {
-    transition: all 0.2s ease;
-    color: #4b5563; /* text-gray-600 */
-    font-style: italic; /* italic */
-    background-color: #f3f4f6; /* bg-gray-100 */
-    border-radius: 0.75rem; /* rounded-xl */
-    padding: 0.75rem; /* p-3 */
-    margin: 0.5rem 0; /* my-2 */
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* shadow-inner */
-  }
-  
-  /* Buttons Container */
+}
+
+/* -----------------------------
+   3. Button Classes
+------------------------------ */
+
+/* Container cho các nút */
+.buttons-container {
+  display: flex;
+  flex-direction: column; /* Mặc định trên màn hình nhỏ */
+  gap: 0.5rem; /* gap-2 */
+  margin-top: 1.25rem; /* mt-5 */
+}
+
+@media (min-width: 640px) { /* sm breakpoint */
   .buttons-container {
-    display: flex;
-    /* flex-direction: column; */
-    gap: 0.5rem; /* gap-2 */
-    margin-top: 1.25rem; /* mt-5 */
+    flex-direction: row;
+    gap: 0.5rem;
+    margin-top: 2rem; /* sm:mt-20 */
   }
-  
-  @media (min-width: 640px) { /* sm breakpoint */
-    .buttons-container {
-      flex-direction: row;
-      gap: 0.5rem;
-      margin-top: 5rem; /* sm:mt-20 */
-    }
-  }
-  
-  /* Action Buttons */
-  .action-button {
-    flex: 1;
-    padding: 0.75rem; /* py-3 */
-    font-size: 1rem; /* text-base */
-    border-radius: 9999px; /* rounded-full */
-    color: #ffffff; /* text-white */
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border: none;
-  }
-  
-  .action-button:focus {
-    outline: none;
-  }
-  
-  /* Button Colors */
-  .btn-blue {
-    background-color: #2563eb; /* bg-blue-600 */
-  }
-  
-  .btn-blue:hover {
-    background-color: #1d4ed8; /* hover:bg-blue-700 */
-  }
-  
-  .btn-orange {
-    background-color: #ea580c; /* bg-orange-500 */
-  }
-  
-  .btn-orange:hover {
-    background-color: #c2410c; /* hover:bg-orange-600 */
-  }
-  
-  .btn-purple {
-    background-color: #9333ea; /* bg-purple-500 */
-  }
-  
-  .btn-purple:hover {
-    background-color: #7e22ce; /* hover:bg-purple-600 */
-  }
+}
 
-
-  /* globals.css */
-
-/* Base Button */
+/* Nút chung */
 .base-button {
-    cursor: pointer;
-    border: none;
-    font-family: inherit;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    padding: 0.5rem 1rem; /* py-2 px-4 */
-    font-weight: 600; /* font-semibold */
-    border-radius: 9999px; /* rounded */
-    color: #ffffff; /* text-white */
-  }
-  
-  /* Hình thức Hover chung */
-  .base-button:hover {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Variants */
-  
-  /* Blue Button */
-  .btn-blue {
-    background-color: #3b82f6; /* bg-blue-500 */
-  }
-  
-  .btn-blue:hover {
-    background-color: #2563eb; /* hover:bg-blue-600 */
-  }
-  
-  /* Orange Button */
-  .btn-orange {
-    background-color: #f97316; /* bg-orange-500 */
-  }
-  
-  .btn-orange:hover {
-    background-color: #ea580c; /* hover:bg-orange-600 */
-  }
-  
-  /* Purple Button */
-  .btn-purple {
-    background-color: #9333ea; /* bg-purple-500 */
-  }
-  
-  .btn-purple:hover {
-    background-color: #7e22ce; /* hover:bg-purple-600 */
-  }
-  
-  /* Specific Button Styles */
-  
-  /* Speak Button */
-  .speak-button {
-    margin-top: 0.5rem; /* mt-2 */
-    padding: 0.25rem 0.75rem; /* px-3 py-1 */
-    background-color: #d1ecf1; /* bg-blue-100 */
-    color: #1d4ed8; /* text-blue-700 */
-    border-radius: 9999px; /* rounded-full */
-    transition: background-color 0.3s ease;
-  }
-  
-  .speak-button:hover {
-    background-color: #c7ecee; /* hover:bg-blue-200 */
-  }
-  
-  /* Speak Answer Button */
-  .speak-answer-button {
-    margin-top: 0.5rem; /* mt-2 */
-    padding: 0.25rem 0.75rem; /* px-3 py-1 */
-    background-color: #d1fae5; /* bg-green-100 */
-    color: #047857; /* text-green-700 */
-    border-radius: 9999px; /* rounded-full */
-    transition: background-color 0.3s ease;
-  }
-  
-  .speak-answer-button:hover {
-    background-color: #a7f3d0; /* hover:bg-green-200 */
-  }
-  
-  /* Action Buttons */
-  .action-button {
-    flex: 1;
-    padding: 0.75rem; /* py-3 */
-    font-size: 1rem; /* text-base */
-    text-align: center;
-  }
-  
-  /* Ensure buttons are styled via variants or additional classes */
-  .btn-active {
+  margin-bottom: .75rem;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  padding: 0.5rem 1rem; /* py-2 px-4 */
+  font-weight: 600; /* font-semibold */
+  border-radius: 9999px; /* rounded-full */
+  color: #ffffff; /* text-white */
+}
+
+/* Hình thức Hover chung */
+.base-button:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Variant Colors */
+
+/* Blue Button */
+.btn-blue {
+  background-color: #2563eb; /* bg-blue-600 */
+}
+
+.btn-blue:hover {
+  background-color: #1d4ed8; /* hover:bg-blue-700 */
+}
+
+/* Orange Button */
+.btn-orange {
+  background-color: #ea580c; /* bg-orange-500 */
+}
+
+.btn-orange:hover {
+  background-color: #c2410c; /* hover:bg-orange-600 */
+}
+
+/* Purple Button */
+.btn-purple {
+  background-color: #9333ea; /* bg-purple-500 */
+}
+
+.btn-purple:hover {
+  background-color: #7e22ce; /* hover:bg-purple-600 */
+}
+
+/* Active & Inactive Buttons */
+.btn-active {
   background-color: #4CAF50; /* Màu nền nút hoạt động */
   color: white;
 }
@@ -259,28 +152,307 @@
   color: black;
 }
 
+/* Speak Button Specific Styles */
+.speak-button,
+.speak-answer-button {
+  padding: 0.25rem 0.75rem; /* px-3 py-1 */
+  border-radius: 9999px; /* rounded-full */
+  transition: background-color 0.3s ease;
+}
+
+/* Speak Button */
+.speak-button {
+  /* background-color: #d1ecf1; bg-blue-100 */
+  color: #1d4ed8; /* text-blue-700 */
+}
+
+.speak-button:hover {
+  background-color: #c7ecee; /* hover:bg-blue-200 */
+}
+
+/* Speak Answer Button */
+.speak-answer-button {
+  background-color: #d1fae5; /* bg-green-100 */
+  color: #047857; /* text-green-700 */
+  margin-top: 0.5rem; /* mt-2 */
+}
+
+.speak-answer-button:hover {
+  background-color: #a7f3d0; /* hover:bg-green-200 */
+}
+
+/* Action Buttons */
 .action-button {
-  width:8rem;
-  margin-right: 10px;
-  padding: 10px 20px;
-  border: none;
+  flex: 1;
+  padding: 0.75rem; /* py-3 */
+  font-size: 1rem; /* text-base */
+  border-radius: 9999px; /* rounded-full */
+  color: #ffffff; /* text-white */
+  text-align: center;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
 }
 
-.btn-purple {
-  background-color: #800080;
-  color: white;
+.action-button:focus {
+  outline: none;
 }
 
-.btn-blue {
-  background-color: #0000FF;
-  color: white;
+/* Responsive Adjustments for Action Buttons */
+.action-button {
+  width: 10rem;
+  margin-right: 0;
 }
 
-/* Ví dụ về CSS cho combobox */
+@media (min-width: 640px) { /* sm breakpoint */
+  .action-button {
+    width: 10rem;
+    margin-right: 10px;
+  }
+}
+
+/* -----------------------------
+   4. Additional Styles
+------------------------------ */
+
+/* Combobox Styles */
 .data-selection select {
+  width: 100%; /* Đảm bảo select rộng đầy đủ trong container */
   padding: 8px 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
+}
+
+/* Question Container */
+.question-container {
+  font-size: 1.5rem; /* text-lg */
+  font-weight: 600; /* font-semibold */
+  color: #2e5fa3; /* text-gray-800 */
+  margin-bottom: 0.5rem; /* mb-2 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Answer Container */
+.answer-container {
+  transition: all 0.2s ease;
+  color: #047857; /* text-green-700 */
+  font-size: 1.5rem; /* text-lg */
+  font-weight: 700; /* font-bold */
+  background-color: #d1fae5; /* bg-green-50 */
+  border-radius: 0.75rem; /* rounded-xl */
+  padding: 0.75rem; /* p-3 */
+  margin: 0.5rem 0; /* my-2 */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* shadow-inner */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Vietnamese Container */
+.vietnamese-container {
+  transition: all 0.2s ease;
+  color: #4b5563; /* text-gray-600 */
+  font-style: italic; /* italic */
+  /* background-color: #f3f4f6; bg-gray-100 */
+  border-radius: 0.75rem; /* rounded-xl */
+  padding: 0.75rem; /* p-3 */
+  margin: 0.5rem 0; /* my-2 */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* shadow-inner */
+}
+
+/* -----------------------------
+   5. Additional Classes for Settings Page
+------------------------------ */
+
+/* Settings Page Container */
+.settings-container {
+  padding: 1rem;
+  padding-bottom: 5rem; /* 80px tương đương */
+  width: 100%;
+  max-width: 40rem; /* Giới hạn chiều rộng trên màn hình lớn */
+  margin: 0 auto; /* Căn giữa container */
+}
+
+/* Section Styles */
+.settings-section {
+  margin-bottom: 1.25rem; /* 20px */
+}
+
+/* Section Title */
+.settings-section h2 {
+  font-size: 1.25rem; /* 20px */
+  font-weight: 700; /* Bold */
+  margin-bottom: 0.5rem; /* 8px */
+  color: #1e3a8a; /* text-blue-800 */
+}
+
+/* Buttons Group */
+.button-group {
+  display: flex;
+  gap: 0.5rem; /* 8px */
+  margin-top: 0.5rem; /* 8px */
+}
+
+/* Form Styles */
+.form-container {
+  border: 1px solid #ddd;
+  padding: 1.25rem; /* 20px */
+  border-radius: 0.5rem; /* 8px */
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1); /* 2px 2px 12px */
+  background-color: #fff;
+}
+
+.form-container h3 {
+  font-size: 1.25rem; /* 20px */
+  font-weight: 700; /* Bold */
+  margin-bottom: 1rem; /* 16px */
+  color: #1e3a8a;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 0.75rem; /* 12px */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.25rem; /* 4px */
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.5rem; /* 8px */
+  border: 1px solid #ccc;
+  border-radius: 0.25rem; /* 4px */
+  font-size: 1rem; /* 16px */
+}
+
+/* List Styles */
+.qa-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 0.625rem; /* 10px */
+}
+
+.qa-list li {
+  border-bottom: 1px solid #ddd;
+  padding: 0.625rem 0; /* 10px 0 */
+}
+
+.qa-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.qa-item-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.qa-item-content strong {
+  font-size: 1rem; /* 16px */
+  color: #1e3a8a;
+}
+
+.qa-item-content p {
+  margin: 0.25rem 0; /* 4px 0 */
+  color: #6b7280; /* text-gray-500 */
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 0.25rem; /* 4px */
+}
+
+.action-buttons .edit-button {
+  background-color: #ffc107; /* Màu vàng */
+  color: #000;
+}
+
+.action-buttons .delete-button {
+  background-color: #dc2626; /* Màu đỏ */
+  color: #fff;
+}
+
+.action-buttons .edit-button:hover {
+  background-color: #eab308; /* Hover màu vàng đậm hơn */
+}
+
+.action-buttons .delete-button:hover {
+  background-color: #b91c1c; /* Hover màu đỏ đậm hơn */
+}
+
+/* -----------------------------
+   5. Additional Classes for Settings Page (Tiếp tục từ trước)
+------------------------------ */
+
+/* Button Variant Colors */
+.btn-red {
+  background-color: #dc2626; /* Màu đỏ */
+}
+
+.btn-red:hover {
+  background-color: #b91c1c; /* hover:bg-red-600 */
+}
+
+.btn-yellow {
+  background-color: #f59e0b; /* Màu vàng */
+}
+
+.btn-yellow:hover {
+  background-color: #d97706; /* hover:bg-yellow-600 */
+}
+
+/* globals.css */
+
+/* -----------------------------
+   Additional Styles for Modal
+------------------------------ */
+
+/* Overlay cho modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Phông nền mờ */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Đảm bảo modal nằm trên cùng */
+}
+
+/* Container của modal */
+.modal-container {
+  background-color: #ffffff; /* Nền trắng */
+  padding: 1.5rem; /* Padding trong */
+  border-radius: 0.5rem; /* Bo góc */
+  max-width: 500px; /* Chiều rộng tối đa */
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Bóng đổ */
+  position: relative;
+}
+
+/* Nút đóng modal (x) */
+.modal-close-button {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: #6b7280; /* Gray color */
+}
+
+.modal-close-button:hover {
+  color: #374151; /* Darker gray on hover */
 }
