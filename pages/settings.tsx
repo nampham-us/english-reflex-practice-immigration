@@ -90,8 +90,8 @@ const Settings: React.FC<SettingsProps> = ({
   return (
     <div className="settings-container">
       {/* Chọn Ngôn Ngữ */}
-      <div className="settings-section">
-        <h2>{labels[language].selectLanguage}</h2>
+      <div className="data-selection" style={{ justifyContent:  "flex-start" }}>
+        <h3>{labels[language].selectLanguage}</h3>
         <div className="button-group">
           <Button
             onClick={() => setLanguage("en")}
