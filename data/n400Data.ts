@@ -1,10 +1,4 @@
-// src/data/n400Data.ts
-export type QAItem = {
-  id: number;
-  question: string;
-  answer: string;
-  vietnamese: string;
-};
+import { QAItem } from "../utils/types";
 
 export const defaultN400Data: QAItem[] = [
   { id: 1, question: "What does 'claim to be a US citizen' mean?", answer: "To state you are a US citizen", vietnamese: "Khai là công dân Mỹ" },
@@ -22,20 +16,20 @@ export const defaultN400Data: QAItem[] = [
   { id: 13, question: "What does 'genocide' mean?", answer: "To kill a whole race", vietnamese: "Diệt chủng" },
   { id: 14, question: "What does 'torture' mean?", answer: "To hurt someone physically", vietnamese: "Tra tấn" },
   { id: 15, question: "What is 'national origin'?", answer: "Where a person is from", vietnamese: "Nguồn gốc quốc gia" },
-  { id: 16, question: "What is a 'police unit'?", answer: "A group that protects a community", vietnamese: "Đơn vị cảnh sát" },
-  { id: 17, question: "What is a 'military unit'?", answer: "A group that works for the government", vietnamese: "Đơn vị quân đội" },
+  { id: 16, question: "What is a 'police unit'?", answer: "A group protects community", vietnamese: "Đơn vị cảnh sát" },
+  { id: 17, question: "What is a 'military unit'?", answer: "A group works for the government", vietnamese: "Đơn vị quân đội" },
   { id: 18, question: "What is a 'vigilante unit'?", answer: "A group acts like the police, but are not the police", vietnamese: "Nhóm tự xử" },
   { id: 19, question: "What is a 'paramilitary unit'?", answer: "Like a military group, but it is not official", vietnamese: "Nhóm bán quân sự" },
   { id: 20, question: "What is a 'rebel group'?", answer: "A group that fights a government", vietnamese: "Nhóm nổi dậy" },
-  { id: 21, question: "What is a 'self-defense unit'?", answer: "A group that protects a place", vietnamese: "Nhóm tự vệ" },
-  { id: 22, question: "What is a 'guerrilla group'?", answer: "A group that uses weapons to attack the government", vietnamese: "Nhóm du kích" },
+  { id: 21, question: "What is a 'self-defense unit'?", answer: "A group protects a place", vietnamese: "Nhóm tự vệ" },
+  { id: 22, question: "What is a 'guerrilla group'?", answer: "A group uses weapons to attack the government", vietnamese: "Nhóm du kích" },
   { id: 23, question: "What is 'prison'?", answer: "A place where prisoners are kept", vietnamese: "Nhà tù" },
   { id: 24, question: "What does 'detained' mean?", answer: "Held in custody by police", vietnamese: "Bị tạm giữ" },
   { id: 25, question: "What is 'jail'?", answer: "A place where prisoners are kept", vietnamese: "Nhà tù" },
   { id: 26, question: "What is a 'detention facility'?", answer: "A place where people are forced to stay", vietnamese: "Nơi giam giữ" },
   { id: 27, question: "What is a 'prison camp'?", answer: "A place to keep enemy soldiers", vietnamese: "Trại tù binh" },
   { id: 28, question: "What is a 'labor camp'?", answer: "A place to force people to work", vietnamese: "Trại lao động cưỡng bức" },
-  { id: 29, question: "What does 'threaten' mean?", answer: "Warn to hurt someone", vietnamese: "Đe dọa" },
+  { id: 29, question: "What does 'threaten' mean?", answer: "To warn to hurt someone", vietnamese: "Đe dọa" },
   { id: 30, question: "What is 'weapons training'?", answer: "To learn how to use a gun", vietnamese: "Học dùng vũ khí" },
   { id: 31, question: "What is a 'weapon'?", answer: "Like a knife or gun", vietnamese: "Vũ khí" },
   { id: 32, question: "What is 'paramilitary training'?", answer: "Learning to fight in combat", vietnamese: "Huấn luyện bán quân sự" },
@@ -90,5 +84,20 @@ export const defaultN400Data: QAItem[] = [
   { id: 81, question: "What are 'non-combatant services'?", answer: "Services that do not involve combat", vietnamese: "Dịch vụ không chiến đấu" },
   { id: 82, question: "What is a 'civilian'?", answer: "A person who is not in the military", vietnamese: "Dân thường" },
   { id: 83, question: "What is 'work of national importance'?", answer: "Tasks that are important to a nation", vietnamese: "Công việc cho quốc gia" },
-  { id: 84, question: "What is 'civilian direction'?", answer: "A direction from a person who is not in the military", vietnamese: "Chỉ đạo của dân thường" }
+  { id: 84, question: "What is 'civilian direction'?", answer: "A direction from a person who is not in the military", vietnamese: "Chỉ đạo của dân thường" },
+  { id: 85, question: "What is 'conspired'?", answer: "To planned with others", vietnamese: "Âm mưu" },
+  { id: 86, question: "What is 'engaged in'?", answer: "To participated in", vietnamese: "Tham gia" },
+  { id: 87, question: "What is 'Associated with'?", answer: "related with, involved in", vietnamese: "Có liên quan với" },
+  { id: 88, question: "What is 'attempted'?", answer: "To tried to something", vietnamese: "Cố gắng" },
+  { id: 89, question: "What is 'joined'?", answer: "To become a member of", vietnamese: "Tham gia" },
+  { id: 90, question: "What is 'membership'?", answer: "The state of being a member", vietnamese: "Thành viên" },
+  { id: 91, question: "What is 'organization'?", answer: "A group of people with a common purpose", vietnamese: "Tổ chức" },
+  { id: 92, question: "What is 'group'?", answer: "A number of people or things that are located close together", vietnamese: "Nhóm" },
+  { id: 93, question: "What is 'association'?", answer: "A group of people with a common purpose", vietnamese: "Hiệp hội" },
+  { id: 94, question: "What is 'party'?", answer: "A group of people with a common purpose", vietnamese: "Đảng phái" },
+  { id: 95, question: "What is 'club'?", answer: "A group of people with a common purpose", vietnamese: "Câu lạc bộ" },
+  { id: 96, question: "What is 'society'?", answer: "A group of people with a common purpose", vietnamese: "Xã hội" },
+  { id: 97, question: "What is 'political party'?", answer: "A group of people with a common purpose", vietnamese: "Đảng chính trị" },
+  { id: 98, question: "What is the 'owe' meaning'?", answer: "To have a debt", vietnamese: "Nợ" },
+  
 ];

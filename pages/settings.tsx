@@ -2,13 +2,9 @@
 import React, { useState } from "react";
 import Button from "../components/Button";
 import Modal from "../components/Modal"; // Import Modal
+import { shuffleArray } from "../utils/shuffle"; // Import hàm shuffle
+import { QAItem, labels } from "../utils/types";
 
-type QAItem = {
-  id: number;
-  question: string;
-  answer: string;
-  vietnamese: string;
-};
 
 type SettingsProps = {
   language: "en" | "vi";
@@ -27,45 +23,8 @@ const Settings: React.FC<SettingsProps> = ({
   n400Data,
   setN400Data,
 }) => {
-  // Định nghĩa các nhãn dựa trên ngôn ngữ
-  const labels = {
-    en: {
-      selectLanguage: "Select Language",
-      english: "English",
-      vietnamese: "Vietnamese",
-      selectDataset: "Select Dataset for Editing",
-      civils: "Civils",
-      n400: "N-400",
-      editData: "Edit Data",
-      addNew: "Add New",
-      question: "Question",
-      answer: "Answer",
-      vietnameseTranslation: "Vietnamese Translation",
-      save: "Save",
-      cancel: "Cancel",
-      edit: "Edit",
-      delete: "Delete",
-      deleteConfirm: "Are you sure you want to delete this item?",
-    },
-    vi: {
-      selectLanguage: "Chọn Ngôn Ngữ",
-      english: "English",
-      vietnamese: "Tiếng Việt",
-      selectDataset: "Chọn Bộ Dữ Liệu Để Chỉnh Sửa",
-      civils: "Civils",
-      n400: "N-400",
-      editData: "Chỉnh Sửa Dữ Liệu",
-      addNew: "Thêm Mới",
-      question: "Câu Hỏi",
-      answer: "Đáp Án",
-      vietnameseTranslation: "Dịch Sang Tiếng Việt",
-      save: "Lưu",
-      cancel: "Hủy",
-      edit: "Chỉnh Sửa",
-      delete: "Xóa",
-      deleteConfirm: "Bạn có chắc chắn muốn xóa mục này?",
-    },
-  };
+
+
 
   // State để chọn bộ dữ liệu cần chỉnh sửa
   const [selectedDataset, setSelectedDataset] = useState<"civils" | "n400">("civils");
@@ -84,6 +43,15 @@ const Settings: React.FC<SettingsProps> = ({
   const data = selectedDataset === "civils" ? civilsData : n400Data;
   const setData = selectedDataset === "civils" ? setCivilsData : setN400Data;
 
+  // Hàm để shuffle dữ liệu
+  const handleShuffle = (dataset: "civils" | "n400") => {
+    if (dataset === "civils") {
+      setCivilsData(shuffleArray(civilsData));
+    } else {
+      setN400Data(shuffleArray(n400Data));
+    }
+  };
+
   const handleSave = () => {
     if (isAdding) {
       setData([...data, { ...formData, id: Date.now() }]);
@@ -100,7 +68,6 @@ const Settings: React.FC<SettingsProps> = ({
   };
 
   const handleEdit = (item: QAItem) => {
-    // console.log("Editing item:", item); // Debug log
     setIsEditing(true);
     setCurrentEditItem(item);
     setFormData(item);
@@ -121,7 +88,7 @@ const Settings: React.FC<SettingsProps> = ({
   };
 
   return (
-    <div className="settings-container"> {/* Sử dụng lớp container đã định nghĩa */}
+    <div className="settings-container">
       {/* Chọn Ngôn Ngữ */}
       <div className="settings-section">
         <h2>{labels[language].selectLanguage}</h2>
@@ -157,6 +124,24 @@ const Settings: React.FC<SettingsProps> = ({
             <option value="n400">{labels[language].n400}</option>
           </select>
         </div>
+      </div>
+
+      {/* Thêm Nút Shuffle */}
+      <div className="settings-section">
+        <h3>{labels[language].shuffle}</h3>
+        {selectedDataset == "civils" ? (
+          <div className="button-group">
+            <Button onClick={() => handleShuffle("civils")} className="btn-purple">
+              {labels[language].shuffleCivils}
+            </Button>
+          </div>
+        ) : (
+          <div className="button-group">
+            <Button onClick={() => handleShuffle("n400")} className="btn-purple">
+              {labels[language].shuffleN400}
+            </Button>
+          </div>
+        )}
       </div>
 
       {/* Danh Sách Các Câu Hỏi và Đáp Án */}

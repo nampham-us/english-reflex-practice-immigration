@@ -75,19 +75,47 @@ body {
    3. Button Classes
 ------------------------------ */
 
-/* Container cho các nút */
 .buttons-container {
   display: flex;
-  /* flex-direction: column; Mặc định trên màn hình nhỏ */
-  gap: 0.5rem; /* gap-2 */
-  margin-top: 1.25rem; /* mt-5 */
+  flex-direction: column; /* Sắp xếp các nhóm nút theo cột trên màn hình nhỏ */
+  align-items: center;
+  gap: 10px; /* Khoảng cách giữa các nhóm nút */
+  padding: 10px;
 }
 
-@media (min-width: 640px) { /* sm breakpoint */
+/* Nhóm chứa Nút Prev và Next */
+.button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 10px; /* Khoảng cách giữa các nút Prev và Next */
+  width: 100%;
+  justify-content: center; /* Căn giữa các nút trên màn hình nhỏ */
+}
+
+/* Nút Show/Hide Answer chiếm toàn bộ chiều ngang trên màn hình nhỏ */
+.full-width-button {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Căn giữa nút trong container */
+}
+
+/* Responsive design với Media Queries */
+@media (min-width: 600px) {
   .buttons-container {
-    flex-direction: row;
-    gap: 0.5rem;
-    margin-top: 2rem; /* sm:mt-20 */
+    flex-direction: row; /* Sắp xếp các nhóm nút theo hàng trên màn hình lớn */
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Tăng khoảng cách giữa các nhóm nút trên màn hình lớn */
+  }
+
+  .button-group {
+    width: auto; /* Đặt lại chiều rộng tự động để phù hợp với bố cục hàng */
+    justify-content: flex-start; /* Căn các nút về phía trái hoặc giữa */
+  }
+
+  .full-width-button {
+    width: auto; /* Cho nút Show/Hide Answer trở lại kích thước tự động */
+    margin-left: 20px; /* Thêm khoảng cách giữa các nhóm nút */
   }
 }
 
@@ -181,28 +209,26 @@ body {
   background-color: #a7f3d0; /* hover:bg-green-200 */
 }
 
-/* Action Buttons */
+/* Các nút hành động */
 .action-button {
-  flex: 1;
-  padding: 0.75rem; /* py-3 */
-  font-size: 1rem; /* text-base */
-  border-radius: 9999px; /* rounded-full */
-  color: #ffffff; /* text-white */
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  padding: 10px 20px;       /* Khoảng đệm trên dưới và trái phải */
+  min-width: 100px;         /* Chiều rộng tối thiểu để các nút có kích thước hợp lý */
   border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;          /* Kích thước chữ hợp lý */
+  transition: opacity 0.3s ease; /* Hiệu ứng hover mượt mà */
+  flex: 1;                  /* Cho phép các nút co giãn đều nhau trong nhóm */
+  max-width: 200px;         /* Giới hạn chiều rộng tối đa để tránh nút quá rộng trên màn hình lớn */
 }
 
 .action-button:focus {
   outline: none;
 }
 
-/* Responsive Adjustments for Action Buttons */
-.action-button {
-  width: 10rem; /* 144px */
-  margin-right: 0;
-  
+/* Hiệu ứng hover cho các nút */
+.action-button:hover:not(.disabled) {
+  opacity: 0.9;
 }
 
 @media (min-width: 640px) { /* sm breakpoint */
@@ -457,4 +483,46 @@ body {
 
 .modal-close-button:hover {
   color: #374151; /* Darker gray on hover */
+}
+
+
+.voice-to-text-container {
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  margin-top: 2rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.voice-to-text-container h2 {
+  margin-bottom: 1rem;
+  color: #1e3a8a;
+}
+
+.controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.transcript {
+  background-color: #f9fafb;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  min-height: 100px;
+}
+
+.btn-gray {
+  background-color: #6b7280;
+  color: white;
+}
+
+.btn-gray.disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.btn-gray:hover {
+  background-color: #4b5563;
 }
