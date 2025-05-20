@@ -110,7 +110,7 @@ const Settings: React.FC<SettingsProps> = ({
 
       {/* Chọn Bộ Dữ Liệu Để Chỉnh Sửa */}
       <div className="data-selection" style={{ justifyContent:  "flex-start" }}>
-        <h2>{labels[language].selectDataset}</h2>
+        <h3>{labels[language].selectDataset}</h3>
         <div className="data-selection">
           <select
             value={selectedDataset}
