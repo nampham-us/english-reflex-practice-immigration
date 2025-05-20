@@ -109,7 +109,7 @@ const Settings: React.FC<SettingsProps> = ({
       </div>
 
       {/* Chọn Bộ Dữ Liệu Để Chỉnh Sửa */}
-      <div className="settings-section">
+      <div className="data-selection" style={{ justifyContent:  "flex-start" }}>
         <h2>{labels[language].selectDataset}</h2>
         <div className="data-selection">
           <select
@@ -126,8 +126,9 @@ const Settings: React.FC<SettingsProps> = ({
         </div>
       </div>
 
+
       {/* Thêm Nút Shuffle */}
-      <div className="settings-section">
+      <div className="data-selection" style={{ justifyContent:  "flex-start" }}>
         <h3>{labels[language].shuffle}</h3>
         {selectedDataset == "civils" ? (
           <div className="button-group">
@@ -144,22 +145,26 @@ const Settings: React.FC<SettingsProps> = ({
         )}
       </div>
 
-      {/* Danh Sách Các Câu Hỏi và Đáp Án */}
-      <div className="settings-section">
+      <div className="data-selection" style={{ justifyContent:  "flex-start"}}>
         <h3>{labels[language].editData}</h3>
         <div className="button-group">
-        <Button
-          onClick={() => {
-            setIsAdding(true);
-            setFormData({ id: Date.now(), question: "", answer: "", vietnamese: "" });
-            setIsEditing(false);
-            setCurrentEditItem(null);
-          }}
-          className="btn-purple"
-        >
-          {labels[language].addNew}
-        </Button>
+          <Button
+            onClick={() => {
+              setIsAdding(true);
+              setFormData({ id: Date.now(), question: "", answer: "", vietnamese: "" });
+              setIsEditing(false);
+              setCurrentEditItem(null);
+            }}
+            className="btn-purple"
+          >
+            {labels[language].addNew}
+          </Button>
         </div>
+      </div>
+
+      {/* Danh Sách Các Câu Hỏi và Đáp Án */}
+      <div className="settings-section">
+
         <ul className="qa-list">
           {data.map((qa) => (
             <li key={qa.id}>
