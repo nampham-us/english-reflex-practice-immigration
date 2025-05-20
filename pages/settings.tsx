@@ -147,6 +147,7 @@ const Settings: React.FC<SettingsProps> = ({
       {/* Danh Sách Các Câu Hỏi và Đáp Án */}
       <div className="settings-section">
         <h3>{labels[language].editData}</h3>
+        <div className="button-group">
         <Button
           onClick={() => {
             setIsAdding(true);
@@ -158,6 +159,7 @@ const Settings: React.FC<SettingsProps> = ({
         >
           {labels[language].addNew}
         </Button>
+        </div>
         <ul className="qa-list">
           {data.map((qa) => (
             <li key={qa.id}>

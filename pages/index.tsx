@@ -156,14 +156,12 @@ const Home: React.FC<HomeProps> = ({ language, civilsData, n400Data }) => {
                 {/* Nút Prev */}
                 <Button
                   onClick={handlePrev}
-                  className={`btn-gray ${currentShuffledIndex === 0 ? "disabled" : ""}`}
+                  className={`btn-purple ${currentShuffledIndex === 0 ? "disabled" : ""}`}
                   disabled={currentShuffledIndex === 0}
                 >
                   {/* {labels[language].prev} */}
                   <FaArrowLeft />
-                </Button>
-
-                
+                </Button>                
 
               {/* Nút Show/Hide Answer */}
               <div className="full-width-button">
