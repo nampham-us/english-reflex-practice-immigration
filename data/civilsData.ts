@@ -1,4 +1,10 @@
-import { QAItem } from "../utils/types";
+// src/data/civilsData.ts
+export type QAItem = {
+  id: number;
+  question: string;
+  answer: string;
+  vietnamese: string;
+};
 
 export const defaultCivilsData: QAItem[] = [
   { id: 1, question: "What is the supreme law of the land?", answer: "The Constitution", vietnamese: "Luật cao nhất nước Mỹ" },
