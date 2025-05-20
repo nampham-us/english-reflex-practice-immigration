@@ -1,10 +1,4 @@
-// src/data/n400Data.ts
-export type QAItem = {
-  id: number;
-  question: string;
-  answer: string;
-  vietnamese: string;
-};
+import { QAItem } from "../utils/types";
 
 export const defaultN400Data: QAItem[] = [
   { id: 1, question: "What does 'claim to be a US citizen' mean?", answer: "To state you are a US citizen", vietnamese: "Khai là công dân Mỹ" },

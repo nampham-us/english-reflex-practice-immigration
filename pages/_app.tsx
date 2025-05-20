@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import type { AppProps } from "next/app";
 import BottomNav from "../components/BottomNav";
 import "../styles/globals.css";
-import { QAItem as QAItemCivils, defaultCivilsData } from "../data/civilsData";
-import { QAItem as QAItemN400, defaultN400Data } from "../data/n400Data";
+import { QAItem as QAItemCivils } from "../utils/types";
+import { QAItem as QAItemN400 } from "../utils/types";
+import { defaultCivilsData } from "../data/civilsData";
+import { defaultN400Data } from "../data/n400Data";
 
 function MyApp({ Component, pageProps }: AppProps) {
   // State quản lý ngôn ngữ
