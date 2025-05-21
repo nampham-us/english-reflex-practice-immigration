@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import Modal from "../components/Modal"; // Import Modal
 import { shuffleArray } from "../utils/shuffle"; // Import hàm shuffle
 import { QAItem, labels } from "../utils/types";
+// import VoiceToText from "../components/VoiceToText"; // Import VoiceToText
 
 
 type SettingsProps = {
@@ -89,6 +90,8 @@ const Settings: React.FC<SettingsProps> = ({
 
   return (
     <div className="settings-container">
+      {/* Thêm Component VoiceToText
+      <VoiceToText /> */}
       {/* Chọn Ngôn Ngữ */}
       <div className="data-selection" style={{ justifyContent:  "flex-start" }}>
         <h3>{labels[language].selectLanguage}</h3>

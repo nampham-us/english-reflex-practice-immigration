@@ -1,61 +1,101 @@
 // components/VoiceToText.tsx
 import React, { useState, useEffect, useRef } from 'react';
+import AIFeedback from './AIFeedback';
 
-const VoiceToText: React.FC = () => {
+interface VoiceToTextProps {
+  onResult?: (text: string) => void;
+}
+
+const VoiceToText: React.FC<VoiceToTextProps> = ({ onResult }) => {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState('');
-const recognitionRef = useRef<any>(null);
+  const [audioChunks, setAudioChunks] = useState<Blob[]>([]);
+  const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
 
   useEffect(() => {
-    const SpeechRecognition =
-      (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-
-    if (SpeechRecognition) {
-      const recognition = new SpeechRecognition();
-      recognition.continuous = true;
-      recognition.lang = 'en-US'; // Đặt ngôn ngữ phù hợp, ví dụ: 'vi-VN' cho tiếng Việt
-      recognition.interimResults = true;
-      recognition.maxAlternatives = 1;
-
-      recognition.onresult = (event: any) => {
-        let interimTranscript = '';
-        for (let i = event.resultIndex; i < event.results.length; ++i) {
-          const result = event.results[i];
-          if (result.isFinal) {
-            setTranscript((prev) => prev + result[0].transcript + ' ');
-          } else {
-            interimTranscript += result[0].transcript;
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+        const mediaRecorder = new MediaRecorder(stream);
+        mediaRecorder.ondataavailable = (event) => {
+          if (event.data.size > 0) {
+            setAudioChunks(prev => [...prev, event.data]);
           }
-        }
-        // Bạn có thể hiển thị interimTranscript nếu muốn
-      };
-
-      recognition.onerror = (event: any) => {
-        console.error('Speech recognition error', event.error);
-      };
-
-      recognitionRef.current = recognition;
+        };
+        mediaRecorder.onstop = () => {
+          const blob = new Blob(audioChunks, { type: 'audio/wav' });
+          setAudioBlob(blob);
+          setAudioChunks([]);
+        };
+        mediaRecorderRef.current = mediaRecorder;
+      }).catch(err => {
+        console.error('Error accessing microphone', err);
+        alert('Không thể truy cập vào microphone của bạn.');
+      });
     } else {
-      alert('Trình duyệt của bạn không hỗ trợ Web Speech API');
+      alert('Trình duyệt của bạn không hỗ trợ getUserMedia API');
     }
-  }, []);
+  }, [audioChunks]);
 
   const startListening = () => {
-    if (recognitionRef.current) {
-      recognitionRef.current.start();
+    if (mediaRecorderRef.current) {
+      mediaRecorderRef.current.start();
       setIsListening(true);
     }
   };
 
   const stopListening = () => {
-    if (recognitionRef.current) {
-      recognitionRef.current.stop();
+    if (mediaRecorderRef.current) {
+      mediaRecorderRef.current.stop();
       setIsListening(false);
     }
   };
 
   const handleClear = () => {
     setTranscript('');
+    setAudioBlob(null);
+  };
+
+  const handleAnalyze = async () => {
+    if (!audioBlob) return;
+
+    setLoading(true);
+
+    try {
+      const reader = new FileReader();
+      reader.readAsDataURL(audioBlob);
+      reader.onloadend = async () => {
+        const base64data = (reader.result as string).split(',')[1];
+
+        const response = await fetch('/api/speech-to-text', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ audioData: base64data }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setTranscript(data.transcript);
+          if (onResult) {
+            onResult(data.transcript);
+          }
+        } else {
+          console.error('Error from API:', data.error);
+          setTranscript('Lỗi khi xử lý âm thanh.');
+        }
+
+        setLoading(false);
+      };
+    } catch (error) {
+      console.error('Error analyzing speech:', error);
+      setTranscript('Lỗi khi xử lý âm thanh.');
+      setLoading(false);
+    }
   };
 
   return (
@@ -63,23 +103,26 @@ const recognitionRef = useRef<any>(null);
       <h2>Voice to Text</h2>
       <div className="controls">
         {!isListening ? (
-          <button onClick={startListening} className="btn-blue">
+          <button onClick={startListening} className="base-button btn-blue">
             Bắt đầu ghi âm
           </button>
         ) : (
-          <button onClick={stopListening} className="btn-red">
+          <button onClick={stopListening} className="base-button btn-red">
             Dừng ghi âm
           </button>
         )}
-        <button onClick={handleClear} className="btn-gray">
+        <button onClick={handleClear} className="base-button btn-gray">
           Xóa
+        </button>
+        <button onClick={handleAnalyze} className="base-button btn-purple" disabled={!audioBlob || loading}>
+          {loading ? 'Đang phân tích...' : 'Phân Tích'}
         </button>
       </div>
       <div className="transcript">
         <h3>Bản văn:</h3>
         <p>{transcript}</p>
       </div>
-      {/* Thêm các stylings phù hợp trong CSS */}
+      {audioBlob && <AIFeedback audioBlob={audioBlob} />}
     </div>
   );
 };

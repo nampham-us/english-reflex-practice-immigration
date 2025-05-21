@@ -24,11 +24,14 @@ const BottomNav: React.FC = () => {
         backgroundColor: "#fff",
       }}
     >
-<Link href="/">
-          <FaHome size={24} color={isActive("/") ? "#007bff" : "#888"} />
+      <Link href="/">
+        <FaHome size={24} color={isActive("/") ? "#007bff" : "#888"} />
       </Link>
-<Link href="/settings">
-          <FaCog size={24} color={isActive("/settings") ? "#007bff" : "#888"} />
+      <Link href="/settings">
+        <FaCog size={24} color={isActive("/settings") ? "#007bff" : "#888"} />
+      </Link>
+      <Link href="/ai">
+        <span>AI</span>
       </Link>
     </div>
   );
