@@ -158,6 +158,7 @@ const Home: React.FC<HomeProps> = ({ language, civilsData, n400Data }) => {
                   onClick={handlePrev}
                   className={`btn-purple ${currentShuffledIndex === 0 ? "disabled" : ""}`}
                   disabled={currentShuffledIndex === 0}
+                  style={{height: "2.2rem"}}
                 >
                   {/* {labels[language].prev} */}
                   <FaArrowLeft />
@@ -177,6 +178,7 @@ const Home: React.FC<HomeProps> = ({ language, civilsData, n400Data }) => {
                 <Button
                   onClick={handleNext}
                   className="btn-purple"
+                  style={{height: "2.2rem"}}
                 >
                   {/* {labels[language].next} */}
                   <FaArrowRight />
