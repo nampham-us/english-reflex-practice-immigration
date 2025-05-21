@@ -1,7 +1,6 @@
 // pages/index.tsx
 import React, { useEffect, useState, useCallback } from "react";
 import Button from "../components/Button";
-import { shuffleArray } from "../utils/shuffle"; // Hàm shuffle đã định nghĩa trước đó
 import { speak } from "../utils/speak"; // Hàm phát âm đã định nghĩa trước đó
 // Import các icon từ react-icons/fa
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
@@ -16,27 +15,21 @@ type HomeProps = {
 const Home: React.FC<HomeProps> = ({ language, civilsData, n400Data }) => {
   const [selectedData, setSelectedData] = useState<"civils" | "n400">("n400");
   const [showAnswer, setShowAnswer] = useState(false);
-  const [shuffledIndices, setShuffledIndices] = useState<number[]>([]);
-  const [currentShuffledIndex, setCurrentShuffledIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const currentData = selectedData === "civils" ? civilsData : n400Data;
 
   // Hàm khởi tạo danh sách shuffled indices
-  const initializeShuffledIndices = useCallback(() => {
-    const indices = currentData.map((_, index) => index);
-    const shuffled = shuffleArray(indices);
-    setShuffledIndices(shuffled);
-    setCurrentShuffledIndex(0);
-  }, [currentData]);
+  // Removed internal shuffling in favor of using the dataset order provided from settings
 
   // Khởi tạo shuffled indices khi component mount hoặc khi selectedData thay đổi
   useEffect(() => {
-    initializeShuffledIndices();
+    setCurrentIndex(0);
     setShowAnswer(false);
-  }, [initializeShuffledIndices]);
+  }, [currentData]);
 
   // Lấy mục hiện tại dựa trên shuffledIndices và currentShuffledIndex
-  const item = currentData[shuffledIndices[currentShuffledIndex]];
+  const item = currentData[currentIndex];
 
   // Gọi hàm speak khi item thay đổi
   useEffect(() => {
@@ -47,19 +40,19 @@ const Home: React.FC<HomeProps> = ({ language, civilsData, n400Data }) => {
 
   // Hàm xử lý Next
   const handleNext = () => {
-    if (currentShuffledIndex + 1 < shuffledIndices.length) {
-      setCurrentShuffledIndex(currentShuffledIndex + 1);
+    if (currentIndex + 1 < currentData.length) {
+      setCurrentIndex(currentIndex + 1);
     } else {
-      // Nếu đã đến cuối danh sách, tái sắp xếp lại
-      initializeShuffledIndices();
+      // Nếu đã đến cuối danh sách, quay về đầu danh sách
+      setCurrentIndex(0);
     }
     setShowAnswer(false);
   };
 
   // Hàm xử lý Prev
   const handlePrev = () => {
-    if (currentShuffledIndex > 0) {
-      setCurrentShuffledIndex(currentShuffledIndex - 1);
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
       setShowAnswer(false);
     }
   };
@@ -109,7 +102,6 @@ const Home: React.FC<HomeProps> = ({ language, civilsData, n400Data }) => {
           onChange={(e) => {
             const value = e.target.value as "civils" | "n400";
             setSelectedData(value);
-            initializeShuffledIndices(); // Khởi tạo lại shuffledIndices khi thay đổi dataset
           }}
         >
           <option value="civils">{labels[language].civils}</option>
@@ -156,8 +148,8 @@ const Home: React.FC<HomeProps> = ({ language, civilsData, n400Data }) => {
                 {/* Nút Prev */}
                 <Button
                   onClick={handlePrev}
-                  className={`btn-purple ${currentShuffledIndex === 0 ? "disabled" : ""}`}
-                  disabled={currentShuffledIndex === 0}
+                className="btn-purple"
+              disabled={currentIndex === 0}
                   style={{height: "2.2rem"}}
                 >
                   {/* {labels[language].prev} */}
