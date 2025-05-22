@@ -1,4 +1,5 @@
 // components/VoiceToText.tsx
+"use client";
 import React, { useState } from 'react';
 import { ReactMediaRecorder } from 'react-media-recorder';
 import AIFeedback from './AIFeedback';

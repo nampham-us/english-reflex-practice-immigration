@@ -1,6 +1,8 @@
 // pages/ai.tsx
+"use client";
 import React, { useState } from "react";
-import VoiceToText from "../components/VoiceToText";
+import dynamic from "next/dynamic";
+const VoiceToText = dynamic(() => import("../components/VoiceToText"), { ssr: false });
 
 const AI: React.FC = () => {
   const [transcription, setTranscription] = useState("");
