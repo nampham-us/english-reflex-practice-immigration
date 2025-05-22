@@ -21,14 +21,23 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(500).json({ error: 'Azure Speech API not configured' });
     }
 
-    // Convert base64 audio data to ArrayBuffer
+    // Convert base64 to ArrayBuffer
     const audioBuffer = Buffer.from(audioData, 'base64');
     const arrayBuffer = Uint8Array.from(audioBuffer).buffer;
 
+    // Initialize the Speech SDK
     const speechConfig = SpeechSDK.SpeechConfig.fromSubscription(AZURE_SPEECH_KEY, AZURE_SPEECH_REGION);
     speechConfig.speechRecognitionLanguage = 'en-US';
 
-    const audioConfig = SpeechSDK.AudioConfig.fromWavFileInput(audioBuffer);
+    const audioStream = SpeechSDK.AudioInputStream.createPushStream();
+    const pushStream = SpeechSDK.AudioInputStream.createPushStream();
+
+    // Push the audio data
+    audioStream.write(arrayBuffer);
+    audioStream.close();
+
+    const audioConfig = SpeechSDK.AudioConfig.fromStreamInput(audioStream);
+
     const recognizer = new SpeechSDK.SpeechRecognizer(speechConfig, audioConfig);
 
     return new Promise<void>((resolve) => {

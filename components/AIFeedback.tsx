@@ -1,6 +1,5 @@
 // components/AIFeedback.tsx
-import React, { useState } from 'react';
-import * as SpeechSDK from 'microsoft-cognitiveservices-speech-sdk';
+import React, { useState, useEffect } from 'react';
 
 type AIFeedbackProps = {
   audioBlob: Blob;
@@ -16,25 +15,53 @@ const AIFeedback: React.FC<AIFeedbackProps> = ({ audioBlob }) => {
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    // Tùy thuộc vào logic của bạn, bạn có thể tự động gọi phân tích khi nhận được audioBlob
+    // Ví dụ:
+    // analyzeSpeech();
+  }, [audioBlob]);
+
   const analyzeSpeech = async () => {
     setLoading(true);
-    // Giả sử API AI trả về một đối tượng Feedback
-    // Bạn cần thay thế đoạn này bằng logic gọi API thực tế và xử lý phản hồi
+    // Gửi audioBlob hoặc transcript tới API để nhận phản hồi từ AI
+    // Ví dụ: Gửi lên API `/api/ai-feedback`
 
-    // Ví dụ giả lập phản hồi
-    setTimeout(() => {
-      setFeedback({
-        transcript: 'This is a sample transcript.',
-        pronunciationScore: 85, // Điểm giả định
-        suggestions: ['Pronounce "sample" more clearly.', 'Improve intonation on "transcript".'],
-      });
+    try {
+      // Giả sử bạn đã có một API route để xử lý phản hồi AI
+      const reader = new FileReader();
+      reader.readAsDataURL(audioBlob);
+      reader.onloadend = async () => {
+        const base64data = (reader.result as string).split(',')[1];
+
+        const response = await fetch('/api/ai-feedback', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ audioData: base64data }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setFeedback(data.feedback);
+        } else {
+          console.error('Error from AI Feedback API:', data.error);
+          setFeedback(null);
+        }
+
+        setLoading(false);
+      };
+    } catch (error) {
+      console.error('Error analyzing speech:', error);
+      setFeedback(null);
       setLoading(false);
-    }, 2000);
+    }
   };
 
   return (
     <div className="ai-feedback-container">
-      <button onClick={analyzeSpeech} className="btn-blue">
+      <button onClick={analyzeSpeech} className="btn-blue" disabled={loading}>
         {loading ? 'Đang phân tích...' : 'Phân Tích Giọng Nói'}
       </button>
       {feedback && (
