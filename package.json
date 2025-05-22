@@ -13,6 +13,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-icons": "^5.5.0",
+    "react-media-recorder": "^1.7.1",
     "react-speech-recognition": "^4.0.1"
   },
   "devDependencies": {

@@ -16,28 +16,38 @@ const VoiceToText: React.FC<VoiceToTextProps> = ({ onResult }) => {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
 
   useEffect(() => {
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-        const mediaRecorder = new MediaRecorder(stream);
-        mediaRecorder.ondataavailable = (event) => {
-          if (event.data.size > 0) {
-            setAudioChunks(prev => [...prev, event.data]);
-          }
-        };
-        mediaRecorder.onstop = () => {
-          const blob = new Blob(audioChunks, { type: 'audio/wav' });
-          setAudioBlob(blob);
-          setAudioChunks([]);
-        };
-        mediaRecorderRef.current = mediaRecorder;
-      }).catch(err => {
-        console.error('Error accessing microphone', err);
-        alert('Không thể truy cập vào microphone của bạn.');
-      });
-    } else {
-      alert('Trình duyệt của bạn không hỗ trợ getUserMedia API');
-    }
-  }, [audioChunks]);
+  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+      let options = { mimeType: 'audio/webm' };
+      if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+        options = { mimeType: 'audio/mp4' };
+        if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+          options = { mimeType: 'audio/mpeg' };
+        }
+      }
+      const mediaRecorder = new MediaRecorder(stream, options);
+      
+      mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          setAudioChunks(prev => [...prev, event.data]);
+        }
+      };
+      
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(audioChunks, { type: mediaRecorder.mimeType });
+        setAudioBlob(blob);
+        setAudioChunks([]);
+      };
+      
+      mediaRecorderRef.current = mediaRecorder;
+    }).catch(err => {
+      console.error('Error accessing microphone', err);
+      alert('Không thể truy cập vào microphone của bạn.');
+    });
+  } else {
+    alert('Trình duyệt của bạn không hỗ trợ getUserMedia API');
+  }
+}, []);
 
   const startListening = () => {
     if (mediaRecorderRef.current) {
