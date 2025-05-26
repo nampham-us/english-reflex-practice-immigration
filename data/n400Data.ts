@@ -46,7 +46,7 @@ export const defaultN400Data: QAItem[] = [
   { id: 43, question: "What does 'charged' mean?", answer: "Police tell you that you did something illegal", vietnamese: "Bị buộc tội" },
   { id: 44, question: "What does 'confined' mean?", answer: "To be kept in a place", vietnamese: "Bị giam giữ" },
   { id: 45, question: "What is a 'suspended sentence'?", answer: "Delaying of sentence", vietnamese: "Hoãn thi hành án" },
-  { id: 46, question: "What does 'parole' mean?", answer: "Allowed to leave prison early", vietnamese: "Thả tù trước hạn" },
+  { id: 46, question: "What does 'parole' mean?", answer: "Allowed to leave prison early ", vietnamese: "Thả tù trước hạn" },
   { id: 47, question: "What does 'probation' mean?", answer: "Supervised instead of jail time. You report to an officer regularly instead of jail time", vietnamese: "Quản chế" },
   { id: 48, question: "What does 'prostitute' mean?", answer: "Someone who has sex for money", vietnamese: "Gái mại dâm" },
   { id: 49, question: "What does 'manufacture' mean?", answer: "To make something", vietnamese: "Sản xuất" },
@@ -103,5 +103,5 @@ export const defaultN400Data: QAItem[] = [
   { id: 100, question: "What is 'unlawful'?", answer: "Against the law", vietnamese: "Trái pháp luật" }
   { id: 101, question: "What is 'assalt'?", answer: "To attack someone", vietnamese: "Tấn công" },
   { id: 102, question: "What is 'threat'?", answer: "A warning to cause harm", vietnamese: "Đe dọa" },
-  { id: 103, question: "What is 'sentence'?", answer: "a punishment under the law", vietnamese: "bản án" },
+  { id: 103, question: "What is 'sentence'?", answer: "a punishment under the law", vietnamese: "bản án" }
 ];
