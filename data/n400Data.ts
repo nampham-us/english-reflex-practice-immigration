@@ -102,6 +102,6 @@ export const defaultN400Data: QAItem[] = [
   { id: 99, question: "What is 'unconstitution'?", answer: "methods that go against the constitution", vietnamese: "Trái hiến pháp" },
   { id: 100, question: "What is 'unlawful'?", answer: "Against the law", vietnamese: "Trái pháp luật" },
   { id: 101, question: "What is 'assalt'?", answer: "To attack someone", vietnamese: "Tấn công" },
-  { id: 102, question: "What is 'threat'?", answer: "A warning to cause harm", vietnamese: "Đe dọa" },
+  { id: 102, question: "What is 'sabotage'?", answer: "To destroy something", vietnamese: "Phá hoại" },
   { id: 103, question: "What is 'sentence'?", answer: "a punishment under the law", vietnamese: "bản án" }
 ];
