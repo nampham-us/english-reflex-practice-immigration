@@ -30,9 +30,9 @@ const BottomNav: React.FC = () => {
       <Link href="/settings">
         <FaCog size={24} color={isActive("/settings") ? "#007bff" : "#888"} />
       </Link>
-      <Link href="/ai">
+      {/* <Link href="/ai">
         <span>AI</span>
-      </Link>
+      </Link> */}
     </div>
   );
 };
